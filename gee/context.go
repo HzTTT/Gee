@@ -15,6 +15,7 @@ type Context struct {
 	// request info
 	Path   string
 	Method string
+	Params map[string]string
 	// response info
 	StatusCode int
 }
@@ -50,6 +51,15 @@ func (c *Context) SetHeader(key string, value string) {
 	c.Writer.Header().Set(key, value)
 }
 
+//Param returns the value of the URL param
+func (c *Context) Param(key string) string {
+	value, ok := c.Params[key]
+	if !ok{
+		return ""
+	}
+	return value
+
+}
 /* ------------------------------------------------------------- */
 
 //Fast create response for String, JSON, Data, HTML
