@@ -91,5 +91,5 @@ func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		}
 	}
 	c.handlers = middlewares
-	c.Next()
+	engine.router.handle(c)
 }
